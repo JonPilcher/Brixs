@@ -63,7 +63,10 @@
     <ClInclude Include="FrameTimer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="rectf.h">
+    <ClInclude Include="Rectf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -101,7 +104,10 @@
     <ClCompile Include="FrameTimer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rectf.cpp">
+    <ClCompile Include="Rectf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Brick.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
