@@ -40,5 +40,5 @@ Rectf Rectf::GetExpanded(float offset) const
 
 Vec2 Rectf::GetCenter() const
 {
-	return Vec2((left + right) /2.0f,(top + bottom /2.0f));
+	return Vec2((left + right) * 2.0f,(top + bottom) * 2.0f);
 }
