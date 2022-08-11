@@ -10,6 +10,7 @@ public:
 	Rectf(const Vec2 topLeft, float width, float height);
 	bool isOverLappingWith(const Rectf& other)const;
 	static Rectf FromCenter(const Vec2& center, float halfWidth, float halfHeight);
+	Rectf GetExpanded(float offset)const;
 public:
 	float left;
 	float right;
