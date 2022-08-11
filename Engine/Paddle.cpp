@@ -1,4 +1,5 @@
 #include "Paddle.h"
+#include <cmath>
 
 Paddle::Paddle(const Vec2& pos_in, float halfWidth_in, float halfHeight_in)
 	:
@@ -29,12 +30,29 @@ void Paddle::Update(Keyboard& kbd, float dt)
 	}
 }
 
-bool Paddle::DoBallCollision(Ball& ball) const
+bool Paddle::DoBallCollision(Ball& ball) 
 {
-	if (ball.GetVelocity().y > 0.0f && GetRect().isOverLappingWith(ball.GetRect()))
+	if (!isCoolDown)
 	{
-		ball.ReboundY();
-		return true;
+		const Rectf rect = GetRect();
+		if (rect.isOverLappingWith(ball.GetRect()))
+		{
+			const Vec2 ballPos = ball.GetBallPos();
+			if (std::signbit(ball.GetVelocity().x) == std::signbit((ballPos - pos).x))
+			{
+				ball.ReboundY();
+			}
+			else if (ballPos.x > rect.left && ballPos.x < rect.right)
+			{
+				ball.ReboundY();
+			}
+			else
+			{
+				ball.ReboundX();
+			}
+			isCoolDown = true;
+			return true;
+		}
 	}
 	return false;
 }
@@ -55,4 +73,9 @@ void Paddle::DoWallCollision(const Rectf& walls)
 Rectf Paddle::GetRect() const
 {
 	return Rectf::FromCenter(pos,halfWidth,halfHeight);
+}
+
+void Paddle::ResetCoolDown()
+{
+	isCoolDown = false;
 }

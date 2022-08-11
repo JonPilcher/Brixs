@@ -10,7 +10,9 @@ public:
 	Brick() = default;
 	Brick(const Rectf& rect_in, Color color_in);
 	void Draw(Graphics& gfx)const;
-	bool DoBallCollision(Ball& ball);
+	void ExecuteBallCollision(Ball& ball);
+	bool CheckBallCollision(const Ball& ball)const;
+	Vec2 GetCenter()const;
 private:
 	static constexpr float padding = 1.0f;
 	Rectf rect;
