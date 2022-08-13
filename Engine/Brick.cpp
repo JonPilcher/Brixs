@@ -28,6 +28,11 @@ Vec2 Brick::GetCenter() const
 	return rect.GetCenter();
 }
 
+bool Brick::Destroyed() const
+{
+	return destroyed;
+}
+
 void Brick::ExecuteBallCollision(Ball& ball)
 {
 	assert(CheckBallCollision(ball));

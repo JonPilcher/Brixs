@@ -10,13 +10,19 @@ public:
 	void Draw(Graphics& gfx)const;
 	void Update(float dt);
 	bool DoWallCollision(const Rectf& walls);
+	void ResetBall(const Rectf& walls);
 	void ReboundX();
 	void ReboundY();
 	Rectf GetRect()const;
 	Vec2 GetVelocity()const;
 	Vec2 GetBallPos()const;
+	bool IsGameOver()const;
+	bool missedBall = false;
 private:
 	static constexpr float radius = 7.0f;
 	Vec2 pos;
 	Vec2 vel;
+	static constexpr int nlives = 5;
+	int livesUsed = 0;
+	bool isGameOver = false;
 };

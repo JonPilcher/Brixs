@@ -11,4 +11,6 @@ public:
 	// 300px by 150px
 	static void DrawTitle(const int x,const int y, Graphics& gfx);
 	static void DrawStartMessage(const int x, const int y, Graphics& gfx);
+	static void DrawYouWin(const int x, const int y, Graphics& gfx);
+	static void DrawYouLose(const int x, const int y, Graphics& gfx);
 };

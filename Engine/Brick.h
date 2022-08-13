@@ -13,6 +13,7 @@ public:
 	void ExecuteBallCollision(Ball& ball);
 	bool CheckBallCollision(const Ball& ball)const;
 	Vec2 GetCenter()const;
+	bool Destroyed()const;
 private:
 	static constexpr float padding = 1.0f;
 	Rectf rect;
