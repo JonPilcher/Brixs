@@ -59,5 +59,7 @@ private:
 	Paddle paddle;
 	Sound soundPad;
 	Sound soundBrick;
+	Sound soundTitle;
+	bool isGameStarted = false;
 	/********************************/
 };
