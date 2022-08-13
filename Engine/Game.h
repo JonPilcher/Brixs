@@ -60,6 +60,9 @@ private:
 	Sound soundPad;
 	Sound soundBrick;
 	Sound soundTitle;
+	Sound soundYouLose;
+	Sound soundYouWin;
+	Sound soundMissedBall;
 	bool isGameStarted = false;
 	bool gameOver = false;
 	/********************************/

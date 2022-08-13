@@ -45,6 +45,7 @@ bool Ball::DoWallCollision(const Rectf& walls)
 	{
 		pos.x = 300.0f;
 		pos.y = 300.0f;	
+		missedBall = true;
 		livesUsed++;
 		if (livesUsed >= nlives)
 		{

@@ -30,6 +30,9 @@ Game::Game(MainWindow& wnd)
 	soundPad(L"Sounds\\arkpad.wav"),
 	soundBrick(L"Sounds\\arkbrick.wav"),
 	soundTitle(L"Sounds\\title.wav"),
+	soundYouWin(L"Sounds\\YouWin.wav"),
+	soundYouLose(L"Sounds\\YouLose.wav"),
+	soundMissedBall(L"Sounds\\missedBall.wav"),
 	paddle(Vec2(500.0f, 500.0f), 50.0f, 10.0f)
 {
 	const Color colors[4] = { Colors::Green, Colors::Blue, Colors::Yellow, Colors::Cyan,};
@@ -67,6 +70,7 @@ void Game::UpdateModel(float dt)
 	{
 		if (!gameOver)
 		{
+			
 			if (!ball.IsGameOver())
 			{
 				paddle.Update(wnd.kbd, dt);
@@ -105,8 +109,9 @@ void Game::UpdateModel(float dt)
 				if (isDestroyed)
 				{
 					gameOver = true;
+					soundYouWin.Play();
 				}
-
+				
 				if (collisionHappened)
 				{
 					paddle.ResetCoolDown();
@@ -122,6 +127,15 @@ void Game::UpdateModel(float dt)
 					paddle.ResetCoolDown();
 					soundPad.Play();
 				}
+				if (ball.IsGameOver())
+				{
+					soundYouLose.Play();
+				}
+				if (ball.missedBall)
+				{
+					soundMissedBall.Play();
+				}
+				ball.missedBall = false;
 			}
 		}
 	}

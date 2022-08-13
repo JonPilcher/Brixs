@@ -17,6 +17,7 @@ public:
 	Vec2 GetVelocity()const;
 	Vec2 GetBallPos()const;
 	bool IsGameOver()const;
+	bool missedBall = false;
 private:
 	static constexpr float radius = 7.0f;
 	Vec2 pos;
