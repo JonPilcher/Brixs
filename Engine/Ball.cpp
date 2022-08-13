@@ -43,11 +43,21 @@ bool Ball::DoWallCollision(const Rectf& walls)
 	}
 	else if (rect.bottom > walls.bottom)
 	{
-		pos.y -= rect.bottom - walls.bottom;
-		ReboundY();
-		Collided = true;
+		pos.x = 300.0f;
+		pos.y = 300.0f;	
 	}
 	return Collided;
+}
+
+void Ball::ResetBall(const Rectf& walls)
+{
+	const Rectf rect = GetRect();
+	if (rect.bottom > walls.bottom)
+	{
+		pos.x = 300.0f;
+		pos.y = 300.0f;
+		
+	}
 }
 
 void Ball::ReboundX()

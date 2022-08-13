@@ -10,6 +10,7 @@ public:
 	void Draw(Graphics& gfx)const;
 	void Update(float dt);
 	bool DoWallCollision(const Rectf& walls);
+	void ResetBall(const Rectf& walls);
 	void ReboundX();
 	void ReboundY();
 	Rectf GetRect()const;

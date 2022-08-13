@@ -61,5 +61,6 @@ private:
 	Sound soundBrick;
 	Sound soundTitle;
 	bool isGameStarted = false;
+	bool gameOver = false;
 	/********************************/
 };
