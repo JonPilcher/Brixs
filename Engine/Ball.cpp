@@ -45,6 +45,11 @@ bool Ball::DoWallCollision(const Rectf& walls)
 	{
 		pos.x = 300.0f;
 		pos.y = 300.0f;	
+		livesUsed++;
+		if (livesUsed >= nlives)
+		{
+			isGameOver = true;
+		}
 	}
 	return Collided;
 }
@@ -83,4 +88,9 @@ Vec2 Ball::GetVelocity() const
 Vec2 Ball::GetBallPos() const
 {
 	return pos;
+}
+
+bool Ball::IsGameOver() const
+{
+	return isGameOver;
 }
