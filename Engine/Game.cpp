@@ -25,7 +25,7 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	ball(Vec2(300.0f, 300.0f), Vec2(300.0f, 300.0f)),
+	ball(Vec2(300.0f, 300.0f), Vec2(300.f, 300.0f)),
 	walls(0.0f, float(gfx.ScreenWidth), 0.0f, float(gfx.ScreenHeight)),
 	soundPad(L"Sounds\\arkpad.wav"),
 	soundBrick(L"Sounds\\arkbrick.wav"),
@@ -134,8 +134,10 @@ void Game::UpdateModel(float dt)
 				if (ball.missedBall)
 				{
 					soundMissedBall.Play();
+				paddle.ResetCoolDown();
 				}
 				ball.missedBall = false;
+				
 			}
 		}
 	}
@@ -154,6 +156,8 @@ void Game::ComposeFrame()
 	}
 	else if(!gameOver || !ball.IsGameOver())
 	{
+		SpriteCodex::DrawWalls(0, 0, gfx);
+		SpriteCodex::DrawWalls(759, 0, gfx);
 		ball.Draw(gfx);
 		for (const Brick& b : brick)
 		{

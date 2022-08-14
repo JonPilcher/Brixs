@@ -48,7 +48,7 @@ bool Paddle::DoBallCollision(Ball& ball)
 			}
 			else
 			{
-				ball.ReboundX();
+				ball.ReboundXDist();
 			}
 			isCoolDown = true;
 			return true;
@@ -60,13 +60,13 @@ bool Paddle::DoBallCollision(Ball& ball)
 void Paddle::DoWallCollision(const Rectf& walls)
 {
 	const Rectf rect = GetRect();
-	if (rect.left < walls.left)
+	if (rect.left < (walls.left + 40.0f))
 	{
-		pos.x += walls.left - rect.left;
+		pos.x += (walls.left + 40.0f) - rect.left;
 	}
-	else if (rect.right > walls.right)
+	else if (rect.right > (walls.right - 40.0f))
 	{
-		pos.x -= rect.right - walls.right;
+		pos.x -= rect.right - (walls.right - 40.0f);
 	}
 }
 

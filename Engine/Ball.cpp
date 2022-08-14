@@ -4,7 +4,9 @@
 Ball::Ball(const Vec2& pos_in, const Vec2& vel_in)
 	:
 	pos(pos_in),
-	vel(vel_in)
+	vel(vel_in), 
+	rng(rd()),
+	vDist(1.5f*60.0f,5.0f*60.0f)
 {
 }
 
@@ -23,15 +25,15 @@ bool Ball::DoWallCollision(const Rectf& walls)
 	bool Collided = false;
 	const Rectf rect = GetRect();
 
-	if (rect.left < walls.left)
+	if (rect.left < (walls.left + 40.0f))
 	{
-		pos.x += walls.left - rect.left;
+		pos.x += (walls.left + 40.0f) - rect.left;
 		ReboundX();
 		Collided = true;
 	}
-	else if (rect.right > walls.right)
+	else if (rect.right > (walls.right - 40.0f))
 	{
-		pos.x -= rect.right - walls.right;
+		pos.x -= rect.right - (walls.right - 40.0f);
 		ReboundX();
 		Collided = true;
 	}
@@ -69,6 +71,11 @@ void Ball::ResetBall(const Rectf& walls)
 void Ball::ReboundX()
 {
 	vel.x = -vel.x;
+}
+
+void Ball::ReboundXDist()
+{
+	vel.x = vDist(rng);
 }
 
 void Ball::ReboundY()

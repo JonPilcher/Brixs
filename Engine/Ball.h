@@ -2,6 +2,7 @@
 #include "Vec2.h"
 #include "Graphics.h"
 #include "SpriteCodex.h"
+#include <random>
 
 class Ball
 {
@@ -12,6 +13,7 @@ public:
 	bool DoWallCollision(const Rectf& walls);
 	void ResetBall(const Rectf& walls);
 	void ReboundX();
+	void ReboundXDist();
 	void ReboundY();
 	Rectf GetRect()const;
 	Vec2 GetVelocity()const;
@@ -25,4 +27,7 @@ private:
 	static constexpr int nlives = 5;
 	int livesUsed = 0;
 	bool isGameOver = false;
+	std::random_device rd;
+	std::mt19937 rng;
+	std::uniform_real_distribution<float>vDist;
 };
