@@ -15,4 +15,5 @@ public:
 	static void DrawYouLose(const int x, const int y, Graphics& gfx);
 	// walls 40px by 599px
 	static void DrawWalls(const int x, const int y, Graphics& gfx);
+	static void DrawTop(const int x, const int y, Graphics& gfx);
 };

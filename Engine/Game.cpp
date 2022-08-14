@@ -158,6 +158,7 @@ void Game::ComposeFrame()
 	{
 		SpriteCodex::DrawWalls(0, 0, gfx);
 		SpriteCodex::DrawWalls(759, 0, gfx);
+		SpriteCodex::DrawTop(40, 0, gfx);
 		ball.Draw(gfx);
 		for (const Brick& b : brick)
 		{
