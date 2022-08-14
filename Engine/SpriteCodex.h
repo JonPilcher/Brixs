@@ -13,5 +13,6 @@ public:
 	static void DrawStartMessage(const int x, const int y, Graphics& gfx);
 	static void DrawYouWin(const int x, const int y, Graphics& gfx);
 	static void DrawYouLose(const int x, const int y, Graphics& gfx);
+	// walls 40px by 599px
 	static void DrawWalls(const int x, const int y, Graphics& gfx);
 };
