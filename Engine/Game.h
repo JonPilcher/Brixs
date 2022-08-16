@@ -48,10 +48,11 @@ private:
 	/********************************/
 	/*  User Variables              */
 	static constexpr float brickWidth = 40.0f;
-	static constexpr float brickHeight = 24.0f;
+	static constexpr float brickHeight = 22.0f;
 	static constexpr int nBricksAcross = 18;
 	static constexpr int nBricksDown = 4;
 	static constexpr int nBricks = nBricksAcross * nBricksDown;
+	static constexpr Color brickColor[4] = { {230,0,0},{0,230,0},{0,0,230},{0,230,230} };
 	FrameTimer ft;
 	Ball ball;
 	Rectf walls;

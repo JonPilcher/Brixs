@@ -16,13 +16,13 @@ void Beveler::DrawOuterBevel(const Rectf& rect, int size, Graphics& gfx) const
 	gfx.DrawRect(left, top + size, left + size, bottom - size, leftColor);
 	gfx.DrawIsoRightTriUL(left, bottom - size, size, leftColor);
 	// top side bevel
-	gfx.DrawIsoRighrTriUR(left, top, size, topColor);
+	gfx.DrawIsoRightTriUR(left, top, size, topColor);
 	gfx.DrawRect(left + size, top, right - size, top + size, topColor);
 	gfx.DrawIsoRightTriUL(right - size, top, size, topColor);
 	//right side bevel
 	gfx.DrawIsoRightTriBR(right - size, top, size, rightColor);
 	gfx.DrawRect(right - size, top + size, right, bottom - size, rightColor);
-	gfx.DrawIsoRighrTriUR(right - size, bottom - size, size, rightColor);
+	gfx.DrawIsoRightTriUR(right - size, bottom - size, size, rightColor);
 	//bottom side bavel
 	gfx.DrawIsoRightTriBR(left, bottom - size, size, bottomColor);
 	gfx.DrawRect(left + size, bottom - size, right - size, bottom, bottomColor);
@@ -40,13 +40,13 @@ void Beveler::DrawInnerBevel(const Rectf& rect, int size, Graphics& gfx) const
 	gfx.DrawRect(left, top + size, left + size, bottom - size, rightColor);
 	gfx.DrawIsoRightTriUL(left, bottom - size, size, rightColor);
 	// top side bevel
-	gfx.DrawIsoRighrTriUR(left, top, size, bottomColor);
+	gfx.DrawIsoRightTriUR(left, top, size, bottomColor);
 	gfx.DrawRect(left + size, top, right - size, top + size, bottomColor);
 	gfx.DrawIsoRightTriUL(right - size, top, size, bottomColor);
 	//right side bevel
 	gfx.DrawIsoRightTriBR(right - size, top, size, leftColor);
 	gfx.DrawRect(right - size, top + size, right, bottom - size, leftColor);
-	gfx.DrawIsoRighrTriUR(right - size, bottom - size, size, leftColor);
+	gfx.DrawIsoRightTriUR(right - size, bottom - size, size, leftColor);
 	//bottom side bavel
 	gfx.DrawIsoRightTriBR(left, bottom - size, size, topColor);
 	gfx.DrawRect(left + size, bottom - size, right - size, bottom, topColor);

@@ -35,12 +35,11 @@ Game::Game(MainWindow& wnd)
 	soundMissedBall(L"Sounds\\missedBall.wav"),
 	paddle(Vec2(500.0f, 500.0f), 50.0f, 10.0f)
 {
-	const Color colors[4] = { Colors::Green, Colors::Blue, Colors::Yellow, Colors::Cyan,};
 	const Vec2 topLeft(40.0f, 40.0f);
 	int i = 0;
 	for (int y = 0; y < nBricksDown; ++y)
 	{
-		const Color c = colors[y];
+		const Color c = brickColor[y];
 		for (int x = 0; x < nBricksAcross; ++x)
 		{
 			brick[i] = Brick(Rectf(topLeft + Vec2(x * brickWidth,y * brickHeight),brickWidth,brickHeight),c);

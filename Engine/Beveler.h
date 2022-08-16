@@ -15,7 +15,7 @@ public:
 	void SetBaseColor(Color base_in);
 private:
 	static constexpr float leftFactor = 1.10f;
-	static constexpr float topFactor = 0.92f;
+	static constexpr float topFactor = 0.93f;
 	static constexpr float bottomFactor = 0.80f;
 	static constexpr float rightFactor = 0.65f;
 	Color baseColor;
