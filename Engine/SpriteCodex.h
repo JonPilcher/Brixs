@@ -15,7 +15,10 @@ public:
 	static void DrawYouLose(const int x, const int y, Graphics& gfx);
 	// walls 40px by 599px
 	static void DrawWalls(const int x, const int y, Graphics& gfx);
+	// top 799px by 30px
 	static void DrawTop(const int x, const int y, Graphics& gfx);
+	// bottom 580px by 30px
+	static void DrawBottom(const int x, const int y, Graphics& gfx);
 	// centered drawing of 104x19 sprite
-	static void SpriteCodex::DrawReady(const Vec2& center, Graphics& gfx);
+	static void DrawReady(const Vec2& center, Graphics& gfx);
 };

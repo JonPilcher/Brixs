@@ -186,7 +186,8 @@ void Game::ComposeFrame()
 	{
 		SpriteCodex::DrawWalls(120, 0, gfx);
 		SpriteCodex::DrawWalls(640, 0, gfx);
-		SpriteCodex::DrawTop(40, 0, gfx);
+		SpriteCodex::DrawTop(0, 0, gfx);
+		SpriteCodex::DrawBottom(160, 569, gfx);
 		lifeCounter.Draw(gfx);
 		for (const Brick& b : brick)
 		{
