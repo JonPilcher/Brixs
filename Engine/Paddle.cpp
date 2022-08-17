@@ -5,7 +5,10 @@ Paddle::Paddle(const Vec2& pos_in, float halfWidth_in, float halfHeight_in)
 	:
 	pos(pos_in),
 	halfWidth(halfWidth_in),
-	halfHeight(halfHeight_in)
+	halfHeight(halfHeight_in),
+	exitXFactor( maximumExitRatio / halfWidth ),
+	fixedZoneHalfWidth( halfWidth * fixedZoneWidthRatio ),
+	fixedZoneExitX( fixedZoneHalfWidth * exitXFactor )
 {
 }
 
@@ -38,18 +41,32 @@ bool Paddle::DoBallCollision(Ball& ball)
 		if (rect.isOverLappingWith(ball.GetRect()))
 		{
 			const Vec2 ballPos = ball.GetBallPos();
-			if (std::signbit(ball.GetVelocity().x) == std::signbit((ballPos - pos).x))
+			if ( std::signbit(ball.GetVelocity().x ) == std::signbit( ( ballPos - pos).x )
+				|| ( ballPos.x >= rect.left && ballPos.x <= rect.right) )
 			{
-				ball.ReboundY();
-			}
-			else if (ballPos.x > rect.left && ballPos.x < rect.right)
-			{
-				ball.ReboundY();
+				Vec2 dir;
+				const float xDifference = ballPos.x - pos.x;
+				if (std::abs(xDifference) < fixedZoneHalfWidth)
+				{
+					if (xDifference < 0.0f)
+					{
+						dir = Vec2(-fixedZoneExitX, -1.0f);
+					}
+					else
+					{
+						dir = Vec2(fixedZoneExitX, -1.0f);
+					}
+				}
+				else
+				{
+					dir = Vec2(xDifference * exitXFactor, -1.0f);
+				}
+				ball.SetDirection(dir);
 			}
 			else
 			{
-				ball.ReboundXDist();
-			}
+				ball.ReboundX();
+			}			
 			isCoolDown = true;
 			return true;
 		}
@@ -60,13 +77,13 @@ bool Paddle::DoBallCollision(Ball& ball)
 void Paddle::DoWallCollision(const Rectf& walls)
 {
 	const Rectf rect = GetRect();
-	if (rect.left < (walls.left + 40.0f))
+	if (rect.left < (walls.left))
 	{
-		pos.x += (walls.left + 40.0f) - rect.left;
+		pos.x += (walls.left) - rect.left;
 	}
-	else if (rect.right > (walls.right - 40.0f))
+	else if (rect.right > (walls.right))
 	{
-		pos.x -= rect.right - (walls.right - 40.0f);
+		pos.x -= rect.right - (walls.right );
 	}
 }
 

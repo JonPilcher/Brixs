@@ -8,7 +8,6 @@ class SpriteCodex
 public:
 	// centered drawing of 14x14 sprite
 	static void DrawBall( const Vec2& center,Graphics& gfx );
-	static void DrawBallSB(const int x, const int y, Graphics& gfx);
 	// 300px by 150px
 	static void DrawTitle(const int x,const int y, Graphics& gfx);
 	static void DrawStartMessage(const int x, const int y, Graphics& gfx);
@@ -17,4 +16,6 @@ public:
 	// walls 40px by 599px
 	static void DrawWalls(const int x, const int y, Graphics& gfx);
 	static void DrawTop(const int x, const int y, Graphics& gfx);
+	// centered drawing of 104x19 sprite
+	static void SpriteCodex::DrawReady(const Vec2& center, Graphics& gfx);
 };

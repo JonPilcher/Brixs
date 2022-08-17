@@ -28,6 +28,8 @@
 #include "FrameTimer.h"
 #include "Sound.h"
 #include "Paddle.h"
+#include "LifeCounter.h"
+#include "Walls.h"
 
 class Game
 {
@@ -41,6 +43,8 @@ private:
 	void UpdateModel(float dt);
 	/********************************/
 	/*  User Functions              */
+	void StartRound();
+	void ResetBall();
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -49,14 +53,21 @@ private:
 	/*  User Variables              */
 	static constexpr float brickWidth = 40.0f;
 	static constexpr float brickHeight = 22.0f;
-	static constexpr int nBricksAcross = 18;
+	static constexpr int nBricksAcross = 12;
 	static constexpr int nBricksDown = 4;
 	static constexpr int nBricks = nBricksAcross * nBricksDown;
-	static constexpr Color brickColor[4] = { {230,0,0},{0,230,0},{0,0,230},{0,230,230} };
+	static constexpr float topSpace = brickHeight * 1.6f;
+	static constexpr float wallThickness = 12.0f;
+	static constexpr float fieldWidth = float(nBricksAcross) * brickWidth;
+	static constexpr float fieldHeight = float(Graphics::ScreenHeight -30) - wallThickness * 2.0f;
+	static constexpr Color brickColors[4] = { {230,0,0},{ 0,230,0 },{ 0,0,230 },{ 0,230,230 } };
+	static constexpr Color wallColor = { 20,60,200 };
+	static constexpr float readyWaitTime = 4.3f;
 	FrameTimer ft;
 	Ball ball;
-	Rectf walls;
+	Walls walls;
 	Brick brick[nBricks];
+	LifeCounter lifeCounter;
 	Paddle paddle;
 	Sound soundPad;
 	Sound soundBrick;
@@ -64,7 +75,11 @@ private:
 	Sound soundYouLose;
 	Sound soundYouWin;
 	Sound soundMissedBall;
+	Sound soundGetReady;
+	int gameState = 0;
+	float curWaitTime;
 	bool isGameStarted = false;
-	bool gameOver = false;
+	bool gameOver = false; 
+	int playSound = 0;
 	/********************************/
 };

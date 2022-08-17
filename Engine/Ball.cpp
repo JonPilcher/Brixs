@@ -1,13 +1,13 @@
 #include"Ball.h"
 #include "SpriteCodex.h"
 
-Ball::Ball(const Vec2& pos_in, const Vec2& vel_in)
+Ball::Ball(const Vec2& pos_in, const Vec2& dir_in)
 	:
-	pos(pos_in),
-	vel(vel_in), 
-	rng(rd()),
-	vDist(1.5f*60.0f,5.0f*60.0f)
+	pos(pos_in)
+	//rng(rd()),
+	//vDist(1.5f*60.0f,5.0f*60.0f)
 {
+	SetDirection(dir_in);
 }
 
 void Ball::Draw(Graphics& gfx) const
@@ -20,52 +20,37 @@ void Ball::Update(float dt)
 	pos += vel * dt;
 }
 
-bool Ball::DoWallCollision(const Rectf& walls)
+// return: 0=nada 1=hit wall 2=hit bottom
+int Ball::DoWallCollision(const Rectf& walls)
 {
-	bool Collided = false;
+	int collisionResult = 0;
 	const Rectf rect = GetRect();
 
-	if (rect.left < (walls.left + 40.0f))
+	if (rect.left < (walls.left))
 	{
-		pos.x += (walls.left + 40.0f) - rect.left;
+		pos.x += (walls.left) - rect.left;
 		ReboundX();
-		Collided = true;
+		collisionResult = 1;
 	}
-	else if (rect.right > (walls.right - 40.0f))
+	else if (rect.right > (walls.right))
 	{
-		pos.x -= rect.right - (walls.right - 40.0f);
+		pos.x -= rect.right - (walls.right);
 		ReboundX();
-		Collided = true;
+		collisionResult = 1;
 	}
-	if (rect.top < (walls.top + 30))
+	if (rect.top < (walls.top))
 	{
-		pos.y += (walls.top + 30) - rect.top;
+		pos.y += (walls.top) - rect.top;
 		ReboundY();
-		Collided = true;
+		collisionResult = 1;
 	}
 	else if (rect.bottom > walls.bottom)
 	{
-		pos.x = 300.0f;
-		pos.y = 300.0f;	
-		missedBall = true;
-		livesUsed++;
-		if (livesUsed >= nlives)
-		{
-			isGameOver = true;
-		}
+		pos.y -= rect.bottom - walls.bottom;
+		ReboundY();
+		collisionResult = 2;
 	}
-	return Collided;
-}
-
-void Ball::ResetBall(const Rectf& walls)
-{
-	const Rectf rect = GetRect();
-	if (rect.bottom > walls.bottom)
-	{
-		pos.x = 300.0f;
-		pos.y = 300.0f;
-		
-	}
+	return collisionResult;
 }
 
 void Ball::ReboundX()
@@ -75,7 +60,7 @@ void Ball::ReboundX()
 
 void Ball::ReboundXDist()
 {
-	vel.x = vDist(rng);
+	//vel.x = vDist(rng);
 }
 
 void Ball::ReboundY()
@@ -98,7 +83,7 @@ Vec2 Ball::GetBallPos() const
 	return pos;
 }
 
-bool Ball::IsGameOver() const
+void Ball::SetDirection(const Vec2& dir)
 {
-	return isGameOver;
+	vel = dir.GetNormalized() * speed;
 }

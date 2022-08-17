@@ -25,4 +25,11 @@ private:
 	float halfHeight;
 	Vec2 pos;
 	bool isCoolDown = false;
+	// control the paddle rebound behavior here
+	static constexpr float maximumExitRatio = 1.6f;
+	static constexpr float fixedZoneWidthRatio = 0.2f;
+	// these are derived from above controls
+	float exitXFactor;
+	float fixedZoneHalfWidth;
+	float fixedZoneExitX;
 };
