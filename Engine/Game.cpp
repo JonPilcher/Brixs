@@ -27,15 +27,15 @@ Game::Game(MainWindow& wnd)
 	gfx(wnd),
 	walls(Rectf::FromCenter(Graphics::GetScreenRect().GetCenter(), fieldWidth / 2.0f, fieldHeight / 2.0f),
 		wallThickness, wallColor),
+	paddle(Vec2(500.0f, 500.0f), 50.0f, 10.0f),
+	lifeCounter({160.0f,15},5),
 	soundPad(L"Sounds\\arkpad.wav"),
 	soundBrick(L"Sounds\\arkbrick.wav"),
 	soundTitle(L"Sounds\\title.wav"),
 	soundYouWin(L"Sounds\\YouWin.wav"),
 	soundYouLose(L"Sounds\\YouLose.wav"),
 	soundMissedBall(L"Sounds\\missedBall.wav"),
-	soundGetReady(L"sounds\\ready.wav"),
-	paddle(Vec2(500.0f, 500.0f), 50.0f, 10.0f),
-	lifeCounter({160.0f,15},5)
+	soundGetReady(L"sounds\\ready.wav")
 {
 	ResetBall();
 	const Vec2 gridTopLeft(walls.GetInnerBounds().left, walls.GetInnerBounds().top + topSpace);
@@ -114,7 +114,7 @@ void Game::UpdateModel(float dt)
 				{
 					soundYouWin.Play();
 				}
-					playSound++;
+				playSound++;
 			}
 
 			if (collisionHappened)
@@ -167,6 +167,10 @@ void Game::StartRound()
 		curWaitTime = 0.0f;
 		gameState = 3;
 		soundGetReady.Play();
+	}
+	else
+	{
+		gameState = 2;
 	}
 }
 
